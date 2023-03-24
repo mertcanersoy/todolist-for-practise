@@ -18,13 +18,12 @@ const AddTodo = (props) => {
       });
       return;
     }
-    const firstWordIndex = enteredTodo.indexOf(" ");
-    const formattedTodo =
-      firstWordIndex === -1
-        ? enteredTodo.charAt(0).toUpperCase() + enteredTodo.slice(1)
-        : enteredTodo.slice(0, firstWordIndex).charAt(0).toUpperCase() +
-          enteredTodo.slice(firstWordIndex + 1);
-
+    // Split the entered text into an array of words
+    const words = enteredTodo.trim().split(" ");
+    // Capitalize the first letter of the first word
+    words[0] = words[0].charAt(0).toUpperCase() + words[0].slice(1);
+    // Join the array back into a string using a space as a separator
+    const formattedTodo = words.join(" ");
     props.onAddTodo(formattedTodo);
     setEnteredTodo("");
   };
