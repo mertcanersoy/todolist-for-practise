@@ -7,9 +7,12 @@ const TodoList = (props) => {
   const checkHandler=()=>{
     setChecked(!checked);
   }
+  if (props.todos.length === 0) {
+    return null; //if there is no user hide card
+  }
   return (
     <Card className={style.todos}>
-      <ul>
+      <ul className="">
         {props.todos.map((todo) => (
           <li key={todo.id}>
             <input checked={todo.checked} onChange={() => checkHandler(todo.id)} className={style.check} type="checkbox" />
