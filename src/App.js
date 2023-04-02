@@ -7,14 +7,19 @@ const App = () => {
   const [todoList,setTodoList]=useState([])
 
   const addTodoHandler=(todo)=>{
-    setTodoList((prevTodoList)=>{
-      return [...prevTodoList, { text: todo, id: Math.random() + 1 }];
+    setTodoList((prevTodoList) => {
+      return [{ text: todo, id: Math.random() + 1 }, ...prevTodoList];
     });
   }
+
+  const handleDelete = (todo) => {
+    setTodoList(todo)
+  };
+
   return (
     <div>
       <AddTodo onAddTodo={addTodoHandler} />
-      <TodoList todos={todoList} />
+      <TodoList todos={todoList} onDelete={handleDelete} />
     </div>
   );
 };
